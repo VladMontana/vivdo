@@ -19,6 +19,10 @@ def extract_video_info(url: str, max_height: int = 1080) -> MediaResult | None:
     outtmpl = os.path.join(temp_dir, f"{temp_id}.%(ext)s")
 
     cookie_paths = [
+        "src/vivido/cookies/cookies.txt",
+        "/app/src/vivido/cookies/cookies.txt",
+        "cookies/cookies.txt",
+        "/app/cookies/cookies.txt",
         "src/vivido/cookies.txt",
         "/app/src/vivido/cookies.txt",
         "cookies.txt",
