@@ -12,10 +12,8 @@ from vivido.keyboards import get_quality_keyboard, get_source_keyboard
 from vivido.logger import logger
 from vivido.middlewares import ThrottlingMiddleware
 
-
 dp = Dispatcher()
 dp.message.middleware(ThrottlingMiddleware(rate_limit_seconds=3))
-
 
 
 @dp.startup()
@@ -98,7 +96,6 @@ async def handle_help(message: Message, bot: Bot):
         "/quality или /settings — выбрать качество видео (1080p или 720p) для этой группы."
     )
     await message.answer(help_text, parse_mode="HTML")
-
 
 
 @dp.message(Command("quality"))
@@ -200,7 +197,6 @@ async def handle_media_links(message: Message, bot: Bot):
             reply_markup=add_to_group_kb,
             parse_mode="HTML",
         )
-
         return
 
     raw_url = match.group(0)
@@ -261,7 +257,6 @@ async def handle_media_links(message: Message, bot: Bot):
     except Exception:
         pass
 
-
     # 3. Неблокирующая постановка задачи в очередь Celery с учетом качества
     try:
         task = process_media_url.delay(
@@ -273,6 +268,3 @@ async def handle_media_links(message: Message, bot: Bot):
         logger.info(f"Задача Celery создана: ID={task.id} (качество {quality}p)")
     except Exception as exc:
         logger.error(f"Ошибка при постановке задачи в Celery: {exc}")
-
-
-
