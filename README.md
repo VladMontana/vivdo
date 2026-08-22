@@ -38,25 +38,25 @@
 
 ```mermaid
 flowchart TD
-    User([👤 Пользователь в группе]) -->|Отправляет ссылку| Bot[🤖 Vivido Bot (aiogram 3)]
-    Bot -->|Проверка лимитов| Throttling[🛡️ Throttling Middleware]
-    Throttling -->|Проверка кэша| Redis[(🗄️ Redis)]
+    User(["👤 Пользователь в группе"]) -->|"Отправляет ссылку"| Bot["🤖 Vivido Bot (aiogram 3)"]
+    Bot -->|"Проверка лимитов"| Throttling["🛡️ Throttling Middleware"]
+    Throttling -->|"Проверка кэша"| Redis[("🗄️ Redis")]
     
-    Redis -.->|Кэш найден (file_id)| Bot
-    Bot -.->|Мгновенный ответ| User
+    Redis -.->|"Кэш найден (file_id)"| Bot
+    Bot -.->|"Мгновенный ответ"| User
 
-    Redis -->|Кэш не найден| CeleryQueue[📥 Celery Queue]
-    CeleryQueue --> Worker[⚙️ Celery Worker]
-    Worker --> Extractor[📦 Extractor Engine]
+    Redis -->|"Кэш не найден"| CeleryQueue["📥 Celery Queue"]
+    CeleryQueue --> Worker["⚙️ Celery Worker"]
+    Worker --> Extractor["📦 Extractor Engine"]
     
-    Extractor -->|Видео| YtDlp[🎬 yt-dlp + ffmpeg (H.264/AAC)]
-    Extractor -->|Фото / Альбомы| PhotoAPI[📸 X/Twitter Photos API]
+    Extractor -->|"Видео"| YtDlp["🎬 yt-dlp + ffmpeg (H.264/AAC)"]
+    Extractor -->|"Фото / Альбомы"| PhotoAPI["📸 X/Twitter Photos API"]
     
-    YtDlp --> Upload[📤 Telegram Bot API]
+    YtDlp --> Upload["📤 Telegram Bot API"]
     PhotoAPI --> Upload
     
-    Upload -->|sendVideo / sendPhoto / sendMediaGroup| User
-    Upload -->|Сохранение file_id| Redis
+    Upload -->|"sendVideo / sendPhoto / sendMediaGroup"| User
+    Upload -->|"Сохранение file_id"| Redis
 ```
 
 ---
@@ -181,4 +181,4 @@ docker compose logs -f
 
 ## 📜 Лицензия
 
-MIT License © 2026 Vivido Team
+MIT License © 2026 VladMontana
