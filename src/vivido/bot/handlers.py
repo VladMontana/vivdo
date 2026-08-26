@@ -245,7 +245,7 @@ async def handle_media_links(message: Message, bot: Bot):
     # 2. Показываем начальный статус обработки
     try:
         url_lower = raw_url.lower()
-        if "youtube.com" in url_lower or "youtu.be" in url_lower or "tiktok.com" in url_lower:
+        if ("youtube.com/shorts" in url_lower or "youtu.be" in url_lower or "tiktok.com" in url_lower) and "youtube.com/post" not in url_lower:
             action = ChatAction.UPLOAD_VIDEO
         else:
             action = ChatAction.TYPING

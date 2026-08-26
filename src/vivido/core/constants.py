@@ -2,7 +2,7 @@ import re
 import urllib.parse
 
 URL_PATTERN: re.Pattern[str] = re.compile(
-    r"https?://(?:www\.|m\.|vm\.|vt\.)?(?:youtube\.com/shorts/[\w\-]+|youtu\.be/[\w\-]+|twitter\.com/\w+/status/\d+|x\.com/\w+/status/\d+|tiktok\.com/@[\w\.\-]+/video/\d+|tiktok\.com/t/[\w\-]+|tiktok\.com/[\w\-]+|(?:vm|vt)\.tiktok\.com/[\w\-]+)\S*",
+    r"https?://(?:www\.|m\.|vm\.|vt\.)?(?:youtube\.com/shorts/[\w\-]+|youtube\.com/post/[\w\-]+|youtube\.com/(?:channel|c|user)/[\w\.\-]+/community\?lb=[\w\-]+|youtu\.be/[\w\-]+|twitter\.com/\w+/status/\d+|x\.com/\w+/status/\d+|tiktok\.com/@[\w\.\-]+/video/\d+|tiktok\.com/t/[\w\-]+|tiktok\.com/[\w\-]+|(?:vm|vt)\.tiktok\.com/[\w\-]+)\S*",
     re.IGNORECASE,
 )
 
@@ -23,6 +23,3 @@ def get_source_button_text(url: str) -> str:
     if "tiktok.com" in url_lower:
         return "🎵 Смотреть в TikTok"
     return "🔗 Смотреть оригинал"
-
-
-

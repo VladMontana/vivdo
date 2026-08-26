@@ -5,6 +5,16 @@ services:
     restart: unless-stopped
     ports:
       - "127.0.0.1:6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+    networks:
+      - vivido
 
   bot:
     build: .
@@ -16,7 +26,10 @@ services:
     environment:
       - REDIS_URL=redis://redis:6379/0
     depends_on:
-      - redis
+      redis:
+        condition: service_healthy
+    networks:
+      - vivido
 
   worker:
     build: .
@@ -28,5 +41,14 @@ services:
     environment:
       - REDIS_URL=redis://redis:6379/0
     depends_on:
-      - redis
+      redis:
+        condition: service_healthy
+    networks:
+      - vivido
 
+volumes:
+  redis_data:
+
+networks:
+  vivido:
+    driver: bridge

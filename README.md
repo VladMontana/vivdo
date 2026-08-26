@@ -17,7 +17,7 @@
 ## 🌟 Ключевые возможности
 
 - 🎬 **Широкая поддержка платформ:**
-  - **YouTube Shorts:** `youtube.com/shorts/...`, `youtu.be/...`
+  - **YouTube:** Shorts (`youtube.com/shorts/...`, `youtu.be/...`) и **Community Posts** (`youtube.com/post/...`, посты с фото и галереями)
   - **TikTok:** `tiktok.com/@.../video/...`, `vt.tiktok.com/...`, `vm.tiktok.com/...`
   - **X (Twitter):** видео, одиночные фото и **галереи / альбомы** в оригинальном качестве (`orig`).
 - ⚡ **Мгновенная отдача из кэша (Redis):** если медиа уже скачивалось ранее в запрошенном качестве, бот отправляет его за миллисекунды по Telegram `file_id`.
